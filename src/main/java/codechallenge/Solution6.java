@@ -1,16 +1,14 @@
 package codechallenge;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+//https://programmers.co.kr/learn/courses/30/lessons/81301
 public class Solution6 {
 
     public int solution(String s) {
 
         Map<String, Integer> numberToString = new HashMap<>();
-        List<Integer> aa = new ArrayList<>();
 
         numberToString.put("zero", 0);
         numberToString.put("one", 1);
@@ -23,27 +21,13 @@ public class Solution6 {
         numberToString.put("eight", 8);
         numberToString.put("nine", 9);
 
-
-
-        for (String s1 : numberToString.keySet()) {
-            if (s.contains(s1)) {
-                s.replaceAll(s1, String.valueOf(numberToString.get(s1)));
-                aa.add(numberToString.get(s1));
-            } else {
-
+        for (Map.Entry<String, Integer> stringIntegerEntry : numberToString.entrySet()) {
+            if (s.contains(stringIntegerEntry.getKey())) {
+                s = s.replaceAll(stringIntegerEntry.getKey(), String.valueOf(stringIntegerEntry.getValue()));
             }
         }
-        if (s.contains(String.valueOf(value))) {
-            System.out.println("value = " + value);
-        }
-
-        for (String value : numberToString.values()) {
-
-        }
-        System.out.println("aa.toString() = " + aa.toString());
-
-
-        return 1;
+        System.out.println("Integer.parseInt(s) = " + Integer.parseInt(s));
+        return Integer.parseInt(s);
     }
 
     public static void main(String[] args) {
