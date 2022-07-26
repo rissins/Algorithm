@@ -2,28 +2,22 @@ package algorithm;
 
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 //https://school.programmers.co.kr/learn/courses/30/lessons/42746
 public class Solution9 {
     public String solution(int[] numbers) {
-        StringBuilder answer = new StringBuilder();
+        if (Arrays.stream(numbers).allMatch(value -> value == 0)) return "0";
         String[] strings = new String[numbers.length];
 
         for (int i = 0; i < strings.length; i++) {
             strings[i] = String.valueOf(numbers[i]);
         }
 
-        Arrays.sort(strings, (o1, o2) -> (o2 + o1).compareTo(o1 + o2));
-
-        for (String string : strings) {
-            answer.append(string);
-        }
-
-        if (strings[0].equals("0")) {
-            return "0";
-        }
-
-        return answer.toString();
+        return Stream.of(strings)
+                .sorted((o1, o2) -> (o2 + o1).compareTo(o1 + o2))
+                .collect(Collectors.joining());
     }
 
     public static void main(String[] args) {
